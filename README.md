@@ -13,8 +13,8 @@ The app was created with the following tecnologies:
 - Expo
 - Yarn
 - VSCode
-- Typescript
+- TypeScript
 
 ## App creation
 
-The main structure of the app was created with the **Expo** using a *Blank (with Typescript)* template,
+The main structure of the app was created with the **Expo** using a *Blank (TypeScript)* template,
