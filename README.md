@@ -7,7 +7,7 @@ This repo have the App created during the **Next Level Week 5**, a [Rocketseat](
 
 ## The Plant Manager
 
-The App will help with plant aid. The main function of the app is schedule the time to next plant watering and return a notification in the time of the watering. Details about the app functions and appearance is on [Figma](https://www.figma.com/file/IhQRtrOZdu3TrvkPYREzOy/PlantManager/duplicate).
+The App will help with plant aid. The main function of the app is schedule the time to next plant watering and return a notification in the time of the watering. Details about the app functions and appearance is on [Figma](https://www.figma.com/file/GV5PsTewZM8FoizN1lUfw3/PlantManager).
 
 ## Stack
 
