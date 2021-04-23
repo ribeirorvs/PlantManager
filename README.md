@@ -21,4 +21,4 @@ The app was created with the following tecnologies:
 
 ## App creation
 
-The main structure of the app was created with the **Expo** using a *Blank (TypeScript)* template,
+The main structure of the app was created with the **Expo** using a *Blank (TypeScript)* template.
