@@ -8,6 +8,7 @@ import {
     Dimensions
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import fonts from '../styles/fonts';
 
 import wateringImg from '../assets/watering.png';
 import colors from '../styles/colors';
@@ -56,13 +57,15 @@ const style = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         color: colors.heading,
-        marginTop: 60
+        marginTop: 60,
+        fontFamily: fonts.heading
     },
     subtitle: {
         textAlign: 'center',
         fontSize: 18,
         paddingHorizontal: 20,
-        color: colors.heading
+        color: colors.heading,
+        fontFamily: fonts.heading
     },
     button: {
         backgroundColor: colors.green,
