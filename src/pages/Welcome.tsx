@@ -13,8 +13,16 @@ import fonts from '../styles/fonts';
 
 import wateringImg from '../assets/watering.png';
 import colors from '../styles/colors';
+import { useNavigation } from '@react-navigation/core';
 
 export function Welcome() {
+
+    const navigation = useNavigation();
+
+    function handleStart() {
+        navigation.navigate('UserIdentification')
+    }
+
     return (
         <SafeAreaView style={style.container}>
             < View style={style.wrapper}>
@@ -36,7 +44,11 @@ export function Welcome() {
                     precisar
                 </Text>
 
-                <TouchableOpacity style={style.button} activeOpacity={0.6}>
+                <TouchableOpacity
+                    style={style.button}
+                    activeOpacity={0.6}
+                    onPress={handleStart}
+                >
                     <Text>
                         <Feather
                             name='chevron-right'
