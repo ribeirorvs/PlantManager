@@ -35,6 +35,7 @@ export function PlantSelect() {
     const [environments, setEnvironments] = useState<EnvironmentProps[]>([]);
     const [plants, setPlants] = useState<PlantProps[]>([]);
     const [envrionmentSelected, setEnvironmentSelected] = useState('all');
+    const [filteredPlants, setfilteredPlants] = useState<PlantProps[]>([]);
 
 
     useEffect(() => {
@@ -62,6 +63,13 @@ export function PlantSelect() {
 
     function handleEnvironmentSelected(key: string) {
         setEnvironmentSelected(key);
+        if (key == 'all') {
+            return setfilteredPlants(plants);
+        }
+        const filtered = plants.filter(plant =>
+            plant.environments.includes(key)
+        );
+        setfilteredPlants(filtered);
     }
 
     return (
@@ -92,7 +100,7 @@ export function PlantSelect() {
             </View>
             < View style={styles.plants}>
                 < FlatList
-                    data={plants}
+                    data={filteredPlants}
                     renderItem={({ item }) => (
                         < PlantCardPrimary data={item} />
                     )}
