@@ -34,6 +34,8 @@ interface PlantProps {
 export function PlantSelect() {
     const [environments, setEnvironments] = useState<EnvironmentProps[]>([]);
     const [plants, setPlants] = useState<PlantProps[]>([]);
+    const [envrionmentSelected, setEnvironmentSelected] = useState('all');
+
 
     useEffect(() => {
         async function fetchEnvironment() {
@@ -58,6 +60,10 @@ export function PlantSelect() {
         fetchPlants();
     }, [])
 
+    function handleEnvironmentSelected(key: string) {
+        setEnvironmentSelected(key);
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             < View style={styles.header}>
@@ -75,6 +81,8 @@ export function PlantSelect() {
                     renderItem={({ item }) => (
                         < EnvironmentButton
                             title={item.title}
+                            active={item.key === envrionmentSelected}
+                            onPress={() => handleEnvironmentSelected(item.key)}
                         />
                     )}
                     horizontal
