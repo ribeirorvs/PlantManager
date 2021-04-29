@@ -57,6 +57,7 @@ export function PlantSelect() {
         async function fetchPlants() {
             const { data } = await api.get('plants?_sort=name&_order=asc');
             setPlants(data);
+            setfilteredPlants(data);
         }
         fetchPlants();
     }, [])
