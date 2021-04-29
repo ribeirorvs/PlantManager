@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     SafeAreaView,
     View,
@@ -10,8 +10,30 @@ import colors from '../styles/colors';
 import { Header } from '../components/Header';
 import fonts from '../styles/fonts';
 import { EnvironmentButton } from '../components/EnvironmentButton';
+import api from '../services/api';
+
+interface EnvironmentProps {
+    key: string;
+    title: string;
+}
 
 export function PlantSelect() {
+    const [environments, setEnvironments] = useState<EnvironmentProps[]>([]);
+
+    useEffect(() => {
+        async function fetchEnvironment() {
+            const { data } = await api.get('plants_environments');
+            setEnvironments([
+                {
+                    key: 'all',
+                    title: 'Todos'
+                },
+                ...data
+            ]);
+        }
+        fetchEnvironment();
+    }, [])
+
     return (
         <SafeAreaView style={styles.container}>
             < View style={styles.header}>
@@ -25,11 +47,10 @@ export function PlantSelect() {
             </View>
             < View >
                 < FlatList
-                    data={[1, 2, 3, 4, 5]}
+                    data={environments}
                     renderItem={({ item }) => (
                         < EnvironmentButton
-                            title="Cozinha"
-                            active
+                            title={item.title}
                         />
                     )}
                     horizontal
