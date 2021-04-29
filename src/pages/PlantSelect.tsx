@@ -4,7 +4,8 @@ import {
     View,
     Text,
     StyleSheet,
-    FlatList
+    FlatList,
+    ActivityIndicator
 } from 'react-native';
 import colors from '../styles/colors';
 import { Header } from '../components/Header';
@@ -12,6 +13,7 @@ import fonts from '../styles/fonts';
 import { EnvironmentButton } from '../components/EnvironmentButton';
 import api from '../services/api';
 import { PlantCardPrimary } from '../components/PlantCardPrimary';
+import { Load } from '../components/Load';
 
 interface EnvironmentProps {
     key: string;
@@ -36,7 +38,10 @@ export function PlantSelect() {
     const [plants, setPlants] = useState<PlantProps[]>([]);
     const [envrionmentSelected, setEnvironmentSelected] = useState('all');
     const [filteredPlants, setfilteredPlants] = useState<PlantProps[]>([]);
-
+    const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(1);
+    const [loadingMore, setLoadingMore] = useState(false);
+    const [loadedAll, setLoadedAll] = useState(false);
 
     useEffect(() => {
         async function fetchEnvironment() {
@@ -54,13 +59,27 @@ export function PlantSelect() {
     }, [])
 
     useEffect(() => {
-        async function fetchPlants() {
-            const { data } = await api.get('plants?_sort=name&_order=asc');
+        fetchPlants();
+    }, [])
+
+    async function fetchPlants() {
+        const { data } = await api
+            .get(`plants?_sort=name&_order=asc&_page=${page}&_limit=6`);
+
+        if (!data)
+            return setLoading(true);
+
+        if (page > 1) {
+            setPlants(oldValue => [...oldValue, ...data])
+            setfilteredPlants(oldValue => [...oldValue, ...data])
+        } else {
             setPlants(data);
             setfilteredPlants(data);
         }
-        fetchPlants();
-    }, [])
+
+        setLoading(false);
+        setLoadingMore(false);
+    }
 
     function handleEnvironmentSelected(key: string) {
         setEnvironmentSelected(key);
@@ -71,6 +90,19 @@ export function PlantSelect() {
             plant.environments.includes(key)
         );
         setfilteredPlants(filtered);
+    }
+
+    function handleFatchMore(distance: number) {
+        if (distance < 1)
+            return;
+
+        setLoadingMore(true);
+        setPage(oldValue => oldValue + 1);
+        fetchPlants();
+    }
+
+    if (loading) {
+        return < Load />
     }
 
     return (
@@ -107,6 +139,15 @@ export function PlantSelect() {
                     )}
                     showsVerticalScrollIndicator={false}
                     numColumns={2}
+                    onEndReachedThreshold={0.3}
+                    onEndReached={({ distanceFromEnd }) =>
+                        handleFatchMore(distanceFromEnd)
+                    }
+                    ListFooterComponent={
+                        loadingMore
+                            ? < ActivityIndicator color={colors.green} />
+                            : <></>
+                    }
                 />
             </View>
         </SafeAreaView>
