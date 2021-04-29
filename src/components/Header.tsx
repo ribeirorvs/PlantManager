@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: 20,
-        marginTop: 40
+        paddingVertical: 20,
+        marginTop: 100
     },
     greeting: {
         fontSize: 32,
