@@ -8,7 +8,8 @@ import {
     TextInput,
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
-    Keyboard
+    Keyboard,
+    Alert
 } from 'react-native';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
@@ -36,6 +37,9 @@ export function UserIdentification() {
     }
 
     function handleSubmit() {
+        if (!name) {
+            return Alert.alert('Me diz como chamar você :(')
+        }
         navigation.navigate('Confirmation')
     }
 
