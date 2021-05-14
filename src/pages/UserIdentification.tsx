@@ -15,6 +15,7 @@ import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 import { Button } from '../components/Button';
 import { useNavigation } from '@react-navigation/core';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function UserIdentification() {
     const [isFocused, setIsFocused] = useState(false);
@@ -36,10 +37,13 @@ export function UserIdentification() {
         setName(value);
     }
 
-    function handleSubmit() {
+    async function handleSubmit() {
         if (!name) {
             return Alert.alert('Me diz como chamar você :(')
         }
+
+        await AsyncStorage.setItem('@plantmanager:user', name);
+
         navigation.navigate('Confirmation')
     }
 
