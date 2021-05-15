@@ -41,7 +41,6 @@ export function PlantSelect() {
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
     const [loadingMore, setLoadingMore] = useState(false);
-    const [loadedAll, setLoadedAll] = useState(false);
 
     useEffect(() => {
         async function fetchEnvironment() {
@@ -119,6 +118,7 @@ export function PlantSelect() {
             < View >
                 < FlatList
                     data={environments}
+                    keyExtractor={(item) => String(item.key)}
                     renderItem={({ item }) => (
                         < EnvironmentButton
                             title={item.title}
@@ -134,6 +134,7 @@ export function PlantSelect() {
             < View style={styles.plants}>
                 < FlatList
                     data={filteredPlants}
+                    keyExtractor={(item) => String(item.id)}
                     renderItem={({ item }) => (
                         < PlantCardPrimary data={item} />
                     )}
