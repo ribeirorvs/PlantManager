@@ -14,27 +14,44 @@ import waterdrop from '../assets/waterdrop.png';
 import { Button } from '../components/Button';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
+import { useRoute } from '@react-navigation/core';
+
+interface Params {
+    plant: {
+        id: string,
+        name: string,
+        about: string,
+        water_tips: string,
+        photo: string,
+        environments: [string],
+        frequency: {
+            times: number,
+            repeat_every: string
+        }
+    }
+}
 
 export function PlantSave() {
+
+    const route = useRoute();
+    const { plant } = route.params as Params;
+
     return (
         <View style={styles.container}>
             <View style={styles.plantInfo}>
                 <SvgFromUri
-                    uri=""
+                    uri={plant.photo}
                     height={150}
                     width={150}
                 />
 
                 <Text style={styles.plantName}>
-                    Plant Name
-            </Text>
+                    {plant.name}
+                </Text>
 
                 <Text style={styles.plantAbout}>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Officia maxime autem sunt dolor nesciunt iste assumenda
-                    repellendus sequi quis inventore similique repudiandae doloremque,
-                    reprehenderit velit ad quo fugit maiores accusantium?
-            </Text>
+                    {plant.about}
+                </Text>
             </View>
             <View style={styles.controller}>
                 <View style={styles.tipContainer}>
@@ -42,7 +59,9 @@ export function PlantSave() {
                         source={waterdrop}
                         style={styles.tipImage}
                     />
-                    <Text style={styles.tipText}> text text text </Text>
+                    <Text style={styles.tipText}>
+                        {plant.water_tips}
+                    </Text>
                 </View>
                 <Text style={styles.alertLabel}>
                     Escolha o melhor horário para ser lembrado:
