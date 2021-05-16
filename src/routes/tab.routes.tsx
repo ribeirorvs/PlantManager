@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import colors from '../styles/colors';
 import { PlantSelect } from '../pages/PlantSelect';
 import { MaterialIcons } from '@expo/vector-icons';
+import { MyPlants } from '../pages/MyPlants';
 
 const appTab = createBottomTabNavigator();
 const AuthRoutes = () => {
@@ -22,26 +23,26 @@ const AuthRoutes = () => {
                 name="Nova Planta"
                 component={PlantSelect}
                 options={{
-                    tabBarIcon: (({ size, color }) => {
+                    tabBarIcon: (({ size, color }) => (
                         <MaterialIcons
                             name="add-circle-outline"
                             size={size}
                             color={color}
                         />
-                    })
+                    ))
                 }}
             />
             <appTab.Screen
                 name="Minhas Plantas"
                 component={MyPlants}
                 options={{
-                    tabBarIcon: (({ size, color }) => {
+                    tabBarIcon: (({ size, color }) => (
                         <MaterialIcons
                             name="format-list-bulleted"
                             size={size}
                             color={color}
                         />
-                    })
+                    ))
                 }}
             />
         </appTab.Navigator>
