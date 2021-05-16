@@ -29,7 +29,7 @@ export function PlantSave() {
     const { plant } = route.params as Params;
     const [selectedDateTime, setSelectedDateTime] = useState(new Date());
     const [showDatePicker, setShowDatePicker] = useState(Platform.OS == 'ios');
-    const navagation = useNavigation();
+    const navigation = useNavigation();
 
     function handleChangeTime(evemt: Event, dateTime: Date | undefined) {
         if (Platform.OS === 'android') {
