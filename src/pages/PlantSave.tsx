@@ -60,7 +60,7 @@ export function PlantSave() {
 
             navigation.navigate('Confirmation', {
                 title: 'Tudo certo',
-                subtitle: "Fique tranquilo que vamos{'\n'}lembrar você de cuidar da sua plantinha{'\n'}com bastante amor.",
+                subtitle: "Fique tranquilo que vamos\nlembrar você de cuidar da sua plantinha\ncom bastante amor.",
                 button: 'Muito obrigado :D',
                 icon: 'hug',
                 nextScreen: 'MyPlants'
