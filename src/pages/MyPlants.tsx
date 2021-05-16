@@ -13,6 +13,7 @@ import { formatDistance } from 'date-fns';
 import { pt } from 'date-fns/locale';
 import { FlatList } from 'react-native-gesture-handler';
 import fonts from '../styles/fonts';
+import { PlantCardSecondary } from '../components/PlantCardSecondary';
 
 
 export function MyPlants() {
@@ -59,7 +60,7 @@ export function MyPlants() {
                     data={myPlants}
                     keyExtractor={(item) => String(item.id)}
                     renderItem={({ item }) => (
-                        <Text>Elemento</Text>
+                        <PlantCardSecondary data={item} />
                     )}
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={{ flex: 1 }}
