@@ -91,7 +91,8 @@ const styles = StyleSheet.create({
         color: colors.heading
     },
     emoji: {
-        fontSize: 78
+        fontSize: 78,
+        color: colors.green
     },
     footer: {
         width: '100%',
