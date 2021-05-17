@@ -18,7 +18,7 @@ import { PlantCardSecondary } from '../components/PlantCardSecondary';
 
 export function MyPlants() {
 
-    const [myPlants, setMyPlants] = useState<PlantProps[]>();
+    const [myPlants, setMyPlants] = useState<PlantProps[]>([]);
     const [loading, setLoading] = useState(true);
     const [nextWatered, setNextWatered] = useState<string>();
 
@@ -30,16 +30,17 @@ export function MyPlants() {
                 new Date(plantStoraged[0].dateTimeNotification).getTime(),
                 new Date().getTime(),
                 { locale: pt }
-            )
+            );
 
             setNextWatered(
-                `Regue sua ${plantStoraged[0].name} {'\n'} daqui a ${nextTime} horas`
-            )
+                `Regue sua ${plantStoraged[0].name}\ndaqui a ${nextTime}`
+            );
 
-            setMyPlants(plantStoraged)
-            setLoading(false)
+            setMyPlants(plantStoraged);
+            setLoading(false);
 
         }
+        loadStorageData();
 
     })
 
@@ -56,6 +57,9 @@ export function MyPlants() {
                 </Text>
             </View>
             <View style={styles.plants}>
+                <Text style={styles.plantsTitle}>
+                    Próximas regadas
+                </Text>
                 < FlatList
                     data={myPlants}
                     keyExtractor={(item) => String(item.id)}
@@ -63,7 +67,6 @@ export function MyPlants() {
                         <PlantCardSecondary data={item} />
                     )}
                     showsVerticalScrollIndicator={false}
-                    contentContainerStyle={{ flex: 1 }}
                 />
             </View>
         </View>
@@ -77,7 +80,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingHorizontal: 30,
-        paddingTop: 50,
         backgroundColor: colors.background
     },
     spotlight: {
