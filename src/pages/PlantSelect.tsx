@@ -103,7 +103,7 @@ export function PlantSelect() {
             < View style={styles.header}>
                 < Header />
                 < Text style={styles.title}>
-                    Em qual hambiente
+                    Em qual ambiente
                 </Text>
                 < Text style={styles.subtitle}>
                     você quer colocar sua planta?
