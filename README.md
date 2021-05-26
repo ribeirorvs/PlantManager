@@ -19,7 +19,7 @@ The app was created with the following tecnologies:
 - VSCode
 - TypeScript
 
-## Know issues
+## Known issues
 
 After app creation I could see some issues that I will fix before try to create the APK file. Here is the list of all know issues for now.
 
